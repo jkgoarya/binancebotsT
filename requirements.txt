@@ -1,0 +1,6 @@
+pandas
+numpy
+matplotlib
+python-binance
+ta-lib
+configparser
