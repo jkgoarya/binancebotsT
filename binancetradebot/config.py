@@ -1,15 +1,7 @@
-import configparser
-import logging
-
-def load_config(general_config_path, secret_config_path):
-    config = configparser.ConfigParser()
-    try:
-        config.read(general_config_path)
-        config.read(secret_config_path)  # Augments or overrides with secret settings
-        logging.info("Configuration files loaded successfully.")
-    except Exception as e:
-        logging.error(f"Failed to read configuration files: {e}")
-    return config
-
-# Setup basic logging configuration
-logging.basicConfig(level=logging.INFO)
+# config.py
+api_key = 'your_binance_api_key'
+api_secret = 'your_binance_api_secret'
+symbols = ['BTCUSDT', 'ETHUSDT']  # Extend this list as needed.
+buy_timeout = 60  # Seconds
+sell_timeout = 60  # Seconds
+fetch_interval_seconds = 60  # Interval for fetching data in seconds

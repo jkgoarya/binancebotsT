@@ -1,9 +1,17 @@
+from config_loader import load_config
+from starlight_strategy import StarlightStrategy
 import logging
-from binancetradebot.config import load_config
-from binancetradebot.binance_trade_bot import BinanceTradeBot
+
+def setup_logging(config):
+    logging.basicConfig(level=getattr(logging, config['LOGGING']['level'].upper()), 
+                        filename=config['LOGGING']['file'], 
+                        format='%(asctime)s - %(levelname)s - %(message)s')
+
+def main():
+    config = load_config()
+    setup_logging(config)
+    strategy = StarlightStrategy(config)
+    strategy.scout()
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    config = load_config('config.ini', 'secret.cfg')
-    bot = BinanceTradeBot(config)
-    bot.run()
+    main()
